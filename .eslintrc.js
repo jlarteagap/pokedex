@@ -1,25 +1,20 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard',
-    'prettier/react'
-  ],
+  extends: ["plugin:react/recommended", "standard", "prettier"],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    ecmaVersion: 'latest',
-    sourceType: 'module'
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: [
-    'react',
-    'prettier'
-  ],
+  plugins: ["react", "prettier"],
   rules: {
-    'prettier/prettier': 'error'
-  }
-}
+    "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/prop-types": "off",
+  },
+};
