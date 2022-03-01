@@ -7,7 +7,12 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import getColorPokemonType from "../utils/getColorPokemonType";
+
 export default function PokemonCard({ pokemon }) {
+  const pokemonColor = getColorPokemonType(pokemon.type);
+  const bgStyle = { backgroundColor: pokemonColor, ...styles.bgStyle };
+
   const goToPokemon = () => {
     console.log(pokemon);
   };
@@ -15,7 +20,7 @@ export default function PokemonCard({ pokemon }) {
     <TouchableWithoutFeedback onPress={goToPokemon}>
       <View style={styles.card}>
         <View style={styles.spacing}>
-          <View style={styles.bgStyle}>
+          <View style={bgStyle}>
             <Text>#{`${pokemon.order}`.padStart(3, 0)}</Text>
             <Text style={styles.name}>{pokemon.name}</Text>
             <Image source={{ uri: pokemon.image }} style={styles.image} />
@@ -36,7 +41,9 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   bgStyle: {
-    backgroundColor: "grey",
+    flex: 1,
+    borderRadius: 15,
+    padding: 10,
   },
   name: {
     color: "#fff",
