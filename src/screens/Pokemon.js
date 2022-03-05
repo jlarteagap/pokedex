@@ -6,7 +6,6 @@ import Header from "../components/pokemon/Header";
 // doble destruction
 export default function Pokemon({ navigation, route: { params } }) {
   const [pokemon, setPokemon] = useState(null);
-  console.log(pokemon.order, pokemon.types);
   // Se ejecutara cada vez que params se moficado.
 
   useEffect(() => {
@@ -24,14 +23,15 @@ export default function Pokemon({ navigation, route: { params } }) {
 
   // solo renderizara cuando exista algo en el state.
   if (!pokemon) return null;
+
   return (
     <ScrollView>
       <Text>Hola</Text>
-      {/* <Header
+      <Header
         name={pokemon.name}
         order={pokemon.order}
-        image={pokemon.sprites.other["official-artwork"].from_default}
-      /> */}
+        image={pokemon.sprites.other["official-artwork"].front_default}
+      />
     </ScrollView>
   );
 }
