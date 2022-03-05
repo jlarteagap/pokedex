@@ -31,6 +31,7 @@ export default function Pokemon({ navigation, route: { params } }) {
         name={pokemon.name}
         order={pokemon.order}
         image={pokemon.sprites.other["official-artwork"].front_default}
+        type={pokemon.types[0].type.name}
       />
     </ScrollView>
   );

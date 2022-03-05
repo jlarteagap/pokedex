@@ -1,13 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
+import getColorPokemonType from "../../utils/getColorPokemonType";
 
-export default function Header({ name, order, image }) {
-  console.log(image);
-
-  const bgStyles = [{ ...styles.bg }];
+export default function Header({ name, order, image, type }) {
+  const color = getColorPokemonType(type);
+  const bgStyle = { backgroundColor: color, ...styles.bg };
+  console.log(bgStyle);
   return (
     <>
-      <View style={bgStyles} />
+      <View style={bgStyle} />
       <SafeAreaView style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.name}>{name}</Text>
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 300,
     borderBottomLeftRadius: 300,
     transform: [{ scaleX: 2 }],
-    backgroundColor: "#f00",
   },
   content: {
     marginHorizontal: 20,
