@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView } from "react-native";
 import { getPokemonDetailsApi } from "../api/pokemon";
 import Header from "../components/pokemon/Header";
+import Type from "../components/pokemon/Type";
 // doble destruction
 export default function Pokemon({ navigation, route: { params } }) {
   const [pokemon, setPokemon] = useState(null);
@@ -26,13 +27,13 @@ export default function Pokemon({ navigation, route: { params } }) {
 
   return (
     <ScrollView>
-      <Text>Hola</Text>
       <Header
         name={pokemon.name}
         order={pokemon.order}
         image={pokemon.sprites.other["official-artwork"].front_default}
         type={pokemon.types[0].type.name}
       />
+      <Type types={pokemon.types} />
     </ScrollView>
   );
 }
