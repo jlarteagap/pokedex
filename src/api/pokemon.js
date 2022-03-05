@@ -1,7 +1,6 @@
 import { API_HOST } from "../utils/constants";
 
 export async function getPokemonsApi(endPointUrl) {
-  console.log(endPointUrl);
   try {
     const url = `${API_HOST}/pokemon/?limit=20&offset=0`;
     const res = await fetch(endPointUrl || url);

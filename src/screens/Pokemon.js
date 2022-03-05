@@ -3,10 +3,28 @@ import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { getPokemonDetailsApi } from "../api/pokemon";
 import Header from "../components/pokemon/Header";
+import Stats from "../components/pokemon/Stats";
 import Type from "../components/pokemon/Type";
+import Icon from "react-native-vector-icons/FontAwesome5";
 // doble destruction
 export default function Pokemon({ navigation, route: { params } }) {
   const [pokemon, setPokemon] = useState(null);
+
+  useEffect(() => {
+    navigation.setOptions({
+      // lado derecho de la pantalla
+      headerRight: () => null,
+      headerLeft: () => (
+        <Icon
+          name="arrow-left"
+          color="#fff"
+          size={20}
+          style={{ marginLeft: 20 }}
+          onPress={navigation.goBack}
+        />
+      ),
+    });
+  }, [navigation, params]);
   // Se ejecutara cada vez que params se moficado.
 
   useEffect(() => {
@@ -34,6 +52,7 @@ export default function Pokemon({ navigation, route: { params } }) {
         type={pokemon.types[0].type.name}
       />
       <Type types={pokemon.types} />
+      <Stats stats={pokemon.stats} />
     </ScrollView>
   );
 }
