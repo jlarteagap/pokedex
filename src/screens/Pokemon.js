@@ -6,14 +6,16 @@ import Header from "../components/pokemon/Header";
 import Stats from "../components/pokemon/Stats";
 import Type from "../components/pokemon/Type";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import Favorite from "../components/pokemon/Favorite";
+import useAuth from "../hooks/useAuth";
 // doble destruction
 export default function Pokemon({ navigation, route: { params } }) {
   const [pokemon, setPokemon] = useState(null);
-
+  const { auth } = useAuth();
   useEffect(() => {
     navigation.setOptions({
       // lado derecho de la pantalla
-      headerRight: () => null,
+      headerRight: () => auth && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"
@@ -24,7 +26,7 @@ export default function Pokemon({ navigation, route: { params } }) {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon]);
   // Se ejecutara cada vez que params se moficado.
 
   useEffect(() => {
